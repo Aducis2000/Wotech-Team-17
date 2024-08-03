@@ -25,18 +25,30 @@ speed_above_80 = pokemon_df[pokemon_df['Speed']>=80]
 fast_pokemons = speed_above_80
 # How many Pokémon meet this criterion? Display this DataFrame using your preferred visualization method.
 count_speed_above_80=len(speed_above_80)
+num_pokemons = count_speed_above_80
 print(f'{count_speed_above_80} pokemons have speed value equal or above 80')
-#plot version 1
+# Histogram 
 plt.hist(fast_pokemons['Speed'], bins = 20, color = 'khaki', edgecolor = 'tan', alpha = 0.7)
 plt.xlabel('Speed')
 plt.ylabel('Amount of Pokemons')
 plt.title('Pokemons distribution with Speed >= 80')
 plt.grid(linestyle = '--',  alpha = 0.7)
 plt.show()
-#plot version 2
+# Bar chart
 plt.figure(figsize=(12, 8))
 plt.bar(speed_above_80['Speed'].values, speed_above_80['Speed'], color='skyblue')
 plt.title('Pokémon with Speed >= 80')
 plt.xlabel('Speed')
 plt.ylabel('Count')
+plt.show()
+# Pie chart
+percentage_filtered_pokemons = (num_pokemons / total_pokemons) * 100
+
+sizes = [percentage_filtered_pokemons, 100 - percentage_filtered_pokemons]
+labels = ['Speed >= 80', 'Others']
+colors = ['pink', 'skyblue']
+
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, colors=colors, startangle=140)
+plt.title('Percentage of Pokemon with Speed >= 80')
 plt.show()
